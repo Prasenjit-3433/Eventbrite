@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Head>
@@ -25,37 +25,30 @@ export default function Home() {
         </nav>
       </header>
       <main className={styles.main}>
-        <a href="">
-          <img src="" alt="" />
-          <h2>Events in London</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Perferendis, dolor modi cumque quaerat ullam sequi iure nemo hic
-            quis libero commodi ipsam cum laborum maiores in. Debitis quisquam
-            exercitationem excepturi?
-          </p>
-        </a>
-        <a href="">
-          <img src="" alt="" />
-          <h2>Events in San Francisco</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Perferendis, dolor modi cumque quaerat ullam sequi iure nemo hic
-            quis libero commodi ipsam cum laborum maiores in. Debitis quisquam
-            exercitationem excepturi?
-          </p>
-        </a>
-        <a href="">
-          <img src="" alt="" />
-          <h2>Events in Barcelona</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Perferendis, dolor modi cumque quaerat ullam sequi iure nemo hic
-            quis libero commodi ipsam cum laborum maiores in. Debitis quisquam
-            exercitationem excepturi?
-          </p>
-        </a>
+        {
+          data.map((event) => {
+            return(
+              <Link href={`/events/${event.id}`} key={event.id}>
+                  <Image src={event.image} alt={event.title} height={300} width={300}/>
+                  <h2>{event.title}</h2>
+                  <p>{event.description}</p>
+              </Link>
+            );
+          })
+        }
       </main>
     </>
   );
+}
+
+// NextJs is gonna run this ServerSide function first, then it'll run the Home component.
+// The ServerSide only runs on the server, never runs on the browser.
+export async function getServerSideProps() {
+  const { events_categories } = await import('/data/data.json');
+
+  return {
+    props: {
+      data: events_categories,
+    }
+  }
 }

@@ -1,8 +1,6 @@
 import Head from "next/head";
 
 import HomePage from '../src/components/home/home-page.component.jsx';
-import Header from "../src/components/header/header.component";
-import Footer from "../src/components/footer/footer.component";
 
 export default function Home({ data }) {
   return (
@@ -13,9 +11,7 @@ export default function Home({ data }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <HomePage data={data}/>
-      <Footer/>
     </>
   );
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const HomePage = ({ data }) => {
     return (
-        <main>
+        <>
         {
           data.map((event) => {
             return(
@@ -16,7 +16,7 @@ const HomePage = ({ data }) => {
             );
           })
         }
-      </main>
+      </>
     );
 }
 

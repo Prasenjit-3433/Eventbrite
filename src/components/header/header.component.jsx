@@ -15,7 +15,7 @@ const Header = () => {
                         </ul>
                     </nav>
                 </div>
-                <h1 id="header-text">Discover Great Events or Create Your Own & Sell Tickets</h1>
+                <p id="header-text">Discover Great Events or Create Your Own & Sell Tickets</p>
             </div>
       </header>
     );

@@ -1,24 +1,10 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import CategoryEvent from '../../../src/components/events/categoryEvent.component';
 
-const EventsCategory = ({ data, category }) => {
-    return(
-        <div>
-            <h1>Events in {category}</h1>
-            {
-                data.map(event => (
-                    <Link href={`/events/${event.city.toLowerCase()}/${event.id}`} key={event.id}>
-                        <Image src={event.image} alt={event.title} height={300} width={300}/>
-                        <h2>{event.title}</h2>
-                        <p>{event.description}</p>
-                    </Link>
-                ))
-            }
-        </div>
-    );
+const EventsCategoryPage = ({ data, category }) => {
+    return <CategoryEvent data={data} category={category} />
 }
 
-export default EventsCategory;
+export default EventsCategoryPage;
 
 // We need to explicitely tell NextJs how many routes & pages, MextJs has to build at build-time
 export async function getStaticPaths() {
